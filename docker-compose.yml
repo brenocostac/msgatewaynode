@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  mysql:
+    container_name: swm-mysql
+    restart: always
+    image: mysql:8.0
+    networks:
+      - swmnetwork
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./volumes/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: senha
+      MYSQL_DATABASE: swm_db
+      MYSQL_USER: swm_user
+      MYSQL_PASSWORD: senha
+
+  rabbit:
+    container_name: swm-rabbit
+    restart: always
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./volumes/rabbit:/data
+    networks:
+      - swmnetwork
+
+networks:
+  swmnetwork:
+    driver: bridge

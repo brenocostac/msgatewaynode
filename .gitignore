@@ -1,0 +1,10 @@
+# Ignorar pasta node_modules
+node_modules/
+
+# Ignorar pasta volumes
+volumes/
+
+# Opcional: outros padrões comuns para projetos Node.js
+.DS_Store
+.env
+*.log
